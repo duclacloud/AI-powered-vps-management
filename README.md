@@ -28,6 +28,7 @@
 - [Lưu ý bảo mật](#security-considerations)
 - [Bước tiếp theo](#whats-next)
 - [Đóng góp](#contributing)
+- [Liên hệ](#contact)
 - [Giấy phép](#license)
 
 ---
@@ -1185,6 +1186,16 @@ Khi đã quen với setup này, bạn có thể mở rộng:
 3. Commit thay đổi (`git commit -m 'Add new troubleshooting tip'`)
 4. Push branch (`git push origin improve-guide`)
 5. Mở Pull Request
+
+---
+
+<a id="contact"></a>
+## 📬 Liên hệ
+
+Nếu bạn cần trao đổi trực tiếp, vui lòng gửi email đến:
+
+- [mandyhades@hotmail.com.vn](mailto:mandyhades@hotmail.com.vn)
+- [ducla.bacha@gmail.com](mailto:ducla.bacha@gmail.com)
 
 ---
 
