@@ -1196,6 +1196,7 @@ Nếu bạn cần trao đổi trực tiếp, vui lòng gửi email đến:
 
 - [mandyhades@hotmail.com.vn](mailto:mandyhades@hotmail.com.vn)
 - [ducla.bacha@gmail.com](mailto:ducla.bacha@gmail.com)
+- [linkedin.com/in/le-anh-duc-aws](https://www.linkedin.com/in/le-anh-duc-aws)
 
 ---
 
