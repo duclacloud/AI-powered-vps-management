@@ -1,0 +1,340 @@
+ducla@ip-172-31-38-153:~$ curl -fsSL https://openclaw.ai/install.sh | bash
+
+  🦞 OpenClaw Installer
+  Chat automation for people who peaked at IRC.
+
+✓ Detected: linux
+
+Install plan
+OS: linux
+Install method: npm
+Requested version: latest
+
+[1/3] Preparing environment
+· Node.js v20.20.0 found, upgrading to v22+
+· Installing Node.js via NodeSource
+· Installing Linux build tools (make/g++/cmake/python3)
+✓ Build tools installed
+✓ Node.js v22 installed
+· Active Node.js: v22.22.0 (/usr/bin/node)
+· Active npm: 10.9.4 (/usr/bin/npm)
+
+[2/3] Installing OpenClaw
+✓ Git already installed
+· Configuring npm for user-local installs
+✓ npm configured for user installs
+· Installing OpenClaw v2026.2.26
+✓ OpenClaw npm package installed
+✓ OpenClaw installed
+
+[3/3] Finalizing setup
+
+! PATH missing npm global bin dir: /home/ducla/.npm-global/bin
+  This can make openclaw show as "command not found" in new terminals.
+  Fix (zsh: ~/.zshrc, bash: ~/.bashrc):
+    export PATH="/home/ducla/.npm-global/bin:$PATH"
+
+🦞 OpenClaw installed successfully (2026.2.26)!
+Finally unpacked. Now point me at your problems.
+
+· Starting setup
+
+
+🦞 OpenClaw 2026.2.26 (bc50708) — Type the command with confidence—nature will provide the stack trace if needed.
+
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██
+██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░████░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                  🦞 OPENCLAW 🦞
+
+┌  OpenClaw onboarding
+│
+◇  Security ─────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                            │
+│  Security warning — please read.                                                           │
+│                                                                                            │
+│  OpenClaw is a hobby project and still in beta. Expect sharp edges.                        │
+│  By default, OpenClaw is a personal agent: one trusted operator boundary.                  │
+│  This bot can read files and run actions if tools are enabled.                             │
+│  A bad prompt can trick it into doing unsafe things.                                       │
+│                                                                                            │
+│  OpenClaw is not a hostile multi-tenant boundary by default.                               │
+│  If multiple users can message one tool-enabled agent, they share that delegated tool      │
+│  authority.                                                                                │
+│                                                                                            │
+│  If you’re not comfortable with security hardening and access control, don’t run           │
+│  OpenClaw.                                                                                 │
+│  Ask someone experienced to help before enabling tools or exposing it to the internet.     │
+│                                                                                            │
+│  Recommended baseline:                                                                     │
+│  - Pairing/allowlists + mention gating.                                                    │
+│  - Multi-user/shared inbox: split trust boundaries (separate gateway/credentials, ideally  │
+│    separate OS users/hosts).                                                               │
+│  - Sandbox + least-privilege tools.                                                        │
+│  - Shared inboxes: isolate DM sessions (`session.dmScope: per-channel-peer`) and keep      │
+│    tool access minimal.                                                                    │
+│  - Keep secrets out of the agent’s reachable filesystem.                                   │
+│  - Use the strongest available model for any bot with tools or untrusted inboxes.          │
+│                                                                                            │
+│  Run regularly:                                                                            │
+│  openclaw security audit --deep                                                            │
+│  openclaw security audit --fix                                                             │
+│                                                                                            │
+│  Must read: https://docs.openclaw.ai/gateway/security                                      │
+│                                                                                            │
+├────────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  I understand this is personal-by-default and shared/multi-user use requires lock-down. Continue?
+│  Yes
+│
+◇  Onboarding mode
+│  QuickStart
+│
+◇  QuickStart ─────────────────────────╮
+│                                      │
+│  Gateway port: 18789                 │
+│  Gateway bind: Loopback (127.0.0.1)  │
+│  Gateway auth: Token (default)       │
+│  Tailscale exposure: Off             │
+│  Direct to chat channels.            │
+│                                      │
+├──────────────────────────────────────╯
+│
+◇  Model/auth provider
+│  Skip for now
+│
+◇  Filter models by provider
+│  All providers
+│
+◇  Default model
+│  Enter model manually
+│
+◇  Default model
+│  ollama/gpt-oss:20b
+│
+◇  Model check ────────────────────────────────────────────────────────────────────────────╮
+│                                                                                          │
+│  Model not found: ollama/gpt-oss:20b. Update agents.defaults.model or run /models list.  │
+│  No auth configured for provider "ollama". The agent may fail until credentials are      │
+│  added.                                                                                  │
+│                                                                                          │
+├──────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Channel status ────────────────────────────╮
+│                                             │
+│  Telegram: needs token                      │
+│  WhatsApp (default): not linked             │
+│  Discord: needs token                       │
+│  Slack: needs tokens                        │
+│  Signal: needs setup                        │
+│  signal-cli: missing (signal-cli)           │
+│  iMessage: needs setup                      │
+│  imsg: missing (imsg)                       │
+│  IRC: not configured                        │
+│  Google Chat: not configured                │
+│  Feishu: install plugin to enable           │
+│  Google Chat: install plugin to enable      │
+│  Nostr: install plugin to enable            │
+│  Microsoft Teams: install plugin to enable  │
+│  Mattermost: install plugin to enable       │
+│  Nextcloud Talk: install plugin to enable   │
+│  Matrix: install plugin to enable           │
+│  BlueBubbles: install plugin to enable      │
+│  LINE: install plugin to enable             │
+│  Zalo: install plugin to enable             │
+│  Zalo Personal: install plugin to enable    │
+│  Synology Chat: install plugin to enable    │
+│  Tlon: install plugin to enable             │
+│                                             │
+├─────────────────────────────────────────────╯
+│
+◇  How channels work ───────────────────────────────────────────────────────────────────────╮
+│                                                                                           │
+│  DM security: default is pairing; unknown DMs get a pairing code.                         │
+│  Approve with: openclaw pairing approve <channel> <code>                                  │
+│  Public DMs require dmPolicy="open" + allowFrom=["*"].                                    │
+│  Multi-user DMs: run: openclaw config set session.dmScope "per-channel-peer" (or          │
+│  "per-account-channel-peer" for multi-account channels) to isolate sessions.              │
+│  Docs: channels/pairing              │
+│                                                                                           │
+│  Telegram: simplest way to get started — register a bot with @BotFather and get going.    │
+│  WhatsApp: works with your own number; recommend a separate phone + eSIM.                 │
+│  Discord: very well supported right now.                                                  │
+│  IRC: classic IRC networks with DM/channel routing and pairing controls.                  │
+│  Google Chat: Google Workspace Chat app with HTTP webhook.                                │
+│  Slack: supported (Socket Mode).                                                          │
+│  Signal: signal-cli linked device; more setup (David Reagans: "Hop on Discord.").         │
+│  iMessage: this is still a work in progress.                                              │
+│  Feishu: 飞书/Lark enterprise messaging with doc/wiki/drive tools.                        │
+│  Nostr: Decentralized protocol; encrypted DMs via NIP-04.                                 │
+│  Microsoft Teams: Bot Framework; enterprise support.                                      │
+│  Mattermost: self-hosted Slack-style chat; install the plugin to enable.                  │
+│  Nextcloud Talk: Self-hosted chat via Nextcloud Talk webhook bots.                        │
+│  Matrix: open protocol; install the plugin to enable.                                     │
+│  BlueBubbles: iMessage via the BlueBubbles mac app + REST API.                            │
+│  LINE: LINE Messaging API bot for Japan/Taiwan/Thailand markets.                          │
+│  Zalo: Vietnam-focused messaging platform with Bot API.                                   │
+│  Zalo Personal: Zalo personal account via QR code login.                                  │
+│  Synology Chat: Connect your Synology NAS Chat to OpenClaw with full agent capabilities.  │
+│  Tlon: decentralized messaging on Urbit; install the plugin to enable.                    │
+│                                                                                           │
+├───────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Select channel (QuickStart)
+│  Telegram (Bot API)
+│
+◇  Telegram bot token ───────────────────────────────────────────────────────────────────╮
+│                                                                                        │
+│  1) Open Telegram and chat with @BotFather                                             │
+│  2) Run /newbot (or /mybots)                                                           │
+│  3) Copy the token (looks like 123456:ABC...)                                          │
+│  Tip: you can also set TELEGRAM_BOT_TOKEN in your env.                                 │
+│  Docs: https://docs.openclaw.ai/telegram  │
+│  Website: https://openclaw.ai                                                          │
+│                                                                                        │
+├────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Enter Telegram bot token
+│  8697632964:AAGDAPgXBeZVIkfkPlAzN2Egb2wD7YmPUws
+│
+◇  Selected channels ────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                    │
+│  Telegram — simplest way to get started — register a bot with @BotFather and get going.            │
+│  https://docs.openclaw.ai/channels/telegram  │
+│  https://openclaw.ai                                                                               │
+│                                                                                                    │
+├────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Updated ~/.openclaw/openclaw.json
+Workspace OK: ~/.openclaw/workspace
+Sessions OK: ~/.openclaw/agents/main/sessions
+│
+◇  Skills status ─────────────╮
+│                             │
+│  Eligible: 4                │
+│  Missing requirements: 40   │
+│  Unsupported on this OS: 7  │
+│  Blocked by allowlist: 0    │
+│                             │
+├─────────────────────────────╯
+│
+◇  Configure skills now? (recommended)
+│  Yes
+│
+◇  Install missing skill dependencies
+│  Skip for now
+│
+◇  Set GOOGLE_PLACES_API_KEY for goplaces?
+│  No
+│
+◇  Set GEMINI_API_KEY for nano-banana-pro?
+│  No
+│
+◇  Set NOTION_API_KEY for notion?
+│  No
+│
+◇  Set OPENAI_API_KEY for openai-image-gen?
+│  No
+│
+◇  Set OPENAI_API_KEY for openai-whisper-api?
+│  No
+│
+◇  Set ELEVENLABS_API_KEY for sag?
+│  No
+│
+◇  Hooks ──────────────────────────────────────────────────────────────────╮
+│                                                                          │
+│  Hooks let you automate actions when agent commands are issued.          │
+│  Example: Save session context to memory when you issue /new or /reset.  │
+│                                                                          │
+│  Learn more: https://docs.openclaw.ai/automation/hooks                   │
+│                                                                          │
+├──────────────────────────────────────────────────────────────────────────╯
+│
+◇  Enable hooks?
+│  Skip for now
+Config overwrite: /home/ducla/.openclaw/openclaw.json (sha256 5b2dea4c8b50755bcfe9de9a151546c52459ee2f2ce941169103ce8719685a1e -> b42608528254e870c443736a6add4343c6668e9a50959e2cae96c95a642bb549, backup
+=/home/ducla/.openclaw/openclaw.json.bak)
+│
+◇  Systemd ────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                          │
+│  Linux installs use a systemd user service by default. Without lingering, systemd stops  │
+│  the user session on logout/idle and kills the Gateway.                                  │
+│  Enabling lingering now (may require sudo; writes /var/lib/systemd/linger).              │
+│                                                                                          │
+├──────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Systemd ──────────────────────────────╮
+│                                        │
+│  Enabled systemd lingering for ducla.  │
+│                                        │
+├────────────────────────────────────────╯
+│
+◇  Gateway service runtime ────────────────────────────────────────────╮
+│                                                                      │
+│  QuickStart uses Node for the Gateway service (stable + supported).  │
+│                                                                      │
+├──────────────────────────────────────────────────────────────────────╯
+│
+◑  Installing Gateway service…
+Installed systemd service: /home/ducla/.config/systemd/user/openclaw-gateway.service
+◇  Gateway service installed.
+│
+◇
+Telegram: ok (@myvps_manager_198_bot) (4802ms)
+Agents: main (default)
+Heartbeat interval: 30m (main)
+Session store (main): /home/ducla/.openclaw/agents/main/sessions/sessions.json (0 entries)
+│
+◇  Optional apps ────────────────────────╮
+│                                        │
+│  Add nodes for extra features:         │
+│  - macOS app (system + notifications)  │
+│  - iOS app (camera/canvas)             │
+│  - Android app (camera/canvas)         │
+│                                        │
+├────────────────────────────────────────╯
+│
+◇  Control UI ─────────────────────────────────────────────────────────────────────╮
+│                                                                                  │
+│  Web UI: http://127.0.0.1:18789/                                                 │
+│  Web UI (with token):                                                            │
+│  http://127.0.0.1:18789/#token=2013d55ae6160633e006a2f43a61b8ee222d185697c3a4f3  │
+│  Gateway WS: ws://127.0.0.1:18789                                                │
+│  Gateway: reachable                                                              │
+│  Docs: https://docs.openclaw.ai/web/control-ui                                   │
+│                                                                                  │
+├──────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Start TUI (best option!) ─────────────────────────────────╮
+│                                                            │
+│  This is the defining action that makes your agent you.    │
+│  Please take your time.                                    │
+│  The more you tell it, the better the experience will be.  │
+│  We will send: "Wake up, my friend!"                       │
+│                                                            │
+ openclaw tui - ws://127.0.0.1:18789 - agent main - session main
+
+ session agent:main:main
+
+
+ Wake up, my friend!
+
+
+ ⚠️ Agent failed before reply: Unknown model: ollama/gpt-oss:20b. Ollama requires authentication to be registered as a provider. Set OLLAMA_API_KEY="ollama-local" (any value works) or run "openclaw
+ configure". See: https://docs.openclaw.ai/providers/ollama.
+ Logs: openclaw logs --follow
+
+
+ xin chao ban la ai
+
+
+ ⚠️ Agent failed before reply: Unknown model: ollama/gpt-oss:20b. Ollama requires authentication to be registered as a provider. Set OLLAMA_API_KEY="ollama-local" (any value works) or run "openclaw
+ configure". See: https://docs.openclaw.ai/providers/ollama.
+ Logs: openclaw logs --follow
+ connected | press ctrl+c again to exit
+ agent main | session main (openclaw-tui) | ollama/gpt-oss:20b | tokens ?/200k
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/exit
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+→ exit 

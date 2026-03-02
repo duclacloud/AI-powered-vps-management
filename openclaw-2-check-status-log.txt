@@ -1,0 +1,188 @@
+ducla@ip-172-31-38-153:~$ source ~/.bashrc
+ducla@ip-172-31-38-153:~$ echo 'export OLLAMA_API_KEY="ollama-local"' >> ~/.bashrc
+echo 'export XDG_RUNTIME_DIR=/run/user/$(id -u)' >> ~/.bashrc
+source ~/.bashrc
+ducla@ip-172-31-38-153:~$ systemctl --user start openclaw-gateway.service
+ducla@ip-172-31-38-153:~$ systemctl --user enable openclaw-gateway.service
+ducla@ip-172-31-38-153:~$ openclaw status
+
+🦞 OpenClaw 2026.2.26 (bc50708) — Your inbox, your infra, your rules.
+
+│
+◇
+│
+◇
+OpenClaw status
+
+Overview
+┌─────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Item            │ Value                                                                                                                                                                               │
+├─────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Dashboard       │ http://127.0.0.1:18789/                                                                                                                                                             │
+│ OS              │ linux 6.17.0-1007-aws (x64) · node 22.22.0                                                                                                                                          │
+│ Tailscale       │ off                                                                                                                                                                                 │
+│ Channel         │ stable (default)                                                                                                                                                                    │
+│ Update          │ pnpm · npm latest 2026.2.26                                                                                                                                                         │
+│ Gateway         │ local · ws://127.0.0.1:18789 (local loopback) · reachable 16ms · auth token · ip-172-31-38-153 (172.31.38.153) app 2026.2.26 linux 6.17.0-1007-aws                                  │
+│ Gateway service │ systemd installed · enabled · running (pid 9742, state active)                                                                                                                      │
+│ Node service    │ systemd not installed                                                                                                                                                               │
+│ Agents          │ 1 · 1 bootstrap file present · sessions 1 · default main active 2m ago                                                                                                              │
+│ Memory          │ 0 files · 0 chunks · dirty · sources memory · plugin memory-core · vector unknown · fts ready · cache on (0)                                                                        │
+│ Probes          │ skipped (use --deep)                                                                                                                                                                │
+│ Events          │ none                                                                                                                                                                                │
+│ Heartbeat       │ 30m (main)                                                                                                                                                                          │
+│ Sessions        │ 1 active · default gpt-oss:20b (128k ctx) · ~/.openclaw/agents/main/sessions/sessions.json                                                                                          │
+└─────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Security audit
+Summary: 1 critical · 3 warn · 1 info
+  CRITICAL Small models require sandboxing and web tools disabled
+    Small models (<=300B params) detected: - ollama/gpt-oss:20b (20B) @ agents.defaults.model.primary (unsafe; sandbox=off; web=[web_fetch, browser]) Uncontrolled …
+    Fix: If you must use small models, enable sandboxing for all sessions (agents.defaults.sandbox.mode="all") and disable web_search/web_fetch/browser (tools.deny=["group:web","browser"]).
+  WARN Reverse proxy headers are not trusted
+    gateway.bind is loopback and gateway.trustedProxies is empty. If you expose the Control UI through a reverse proxy, configure trusted proxies so local-client c…
+    Fix: Set gateway.trustedProxies to your proxy IPs or keep the Control UI local-only.
+  WARN Some gateway.nodes.denyCommands entries are ineffective
+    gateway.nodes.denyCommands uses exact node command-name matching only (for example `system.run`), not shell-text filtering inside a command payload. - Unknown …
+    Fix: Use exact command names (for example: canvas.present, canvas.hide, canvas.navigate, canvas.eval, canvas.snapshot, canvas.a2ui.push, canvas.a2ui.pushJSONL, canvas.a2ui.reset). If you need broader restrictions, remove risky command IDs from allowCommands/default workflows and tighten tools.exec policy.
+  WARN Some configured models are below recommended tiers
+    Smaller/older models are generally more susceptible to prompt injection and tool misuse. - ollama/gpt-oss:20b (Below GPT-5 family) @ agents.defaults.model.prim…
+    Fix: Use the latest, top-tier model for any bot with tools or untrusted inboxes. Avoid Haiku tiers; prefer GPT-5+ and Claude 4.5+.
+Full report: openclaw security audit
+Deep probe: openclaw security audit --deep
+
+Channels
+┌──────────┬─────────┬────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Channel  │ Enabled │ State  │ Detail                                                                                                                                                                  │
+├──────────┼─────────┼────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Telegram │ ON      │ OK     │ token config (8697…PUws · len 46) · accounts 1/1                                                                                                                        │
+└──────────┴─────────┴────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Sessions
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────┬─────────┬──────────────┬───────────────────┐
+│ Key                                                                                                                                             │ Kind   │ Age     │ Model        │ Tokens            │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────┼──────────────┼───────────────────┤
+│ agent:main:main                                                                                                                                 │ direct │ 2m ago  │ gpt-oss:20b  │ unknown/128k (?%) │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────┴─────────┴──────────────┴───────────────────┘
+
+FAQ: https://docs.openclaw.ai/faq
+Troubleshooting: https://docs.openclaw.ai/troubleshooting
+
+Next steps:
+  Need to share?      openclaw status --all
+  Need to debug live? openclaw logs --follow
+  Need to test channels? openclaw status --deep
+ducla@ip-172-31-38-153:~$ openclaw doctor
+
+🦞 OpenClaw 2026.2.26 (bc50708) — I don't judge, but your missing API keys are absolutely judging you.
+
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██
+██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██
+██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                  🦞 OPENCLAW 🦞
+
+┌  OpenClaw doctor
+│
+◇  Update ──────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                           │
+│  This install is not a git checkout.                                                      │
+│  Run `openclaw update` to update via your package manager (npm/pnpm), then rerun doctor.  │
+│                                                                                           │
+├───────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Create OAuth dir at ~/.openclaw/credentials?
+│  Yes
+│
+◇  State integrity ──────────────────────────────────────────╮
+│                                                            │
+│  - CRITICAL: OAuth dir missing (~/.openclaw/credentials).  │
+│                                                            │
+├────────────────────────────────────────────────────────────╯
+│
+◇  Doctor changes ───────────────────────────────╮
+│                                                │
+│  - Created OAuth dir: ~/.openclaw/credentials  │
+│                                                │
+├────────────────────────────────────────────────╯
+│
+◇  Security ─────────────────────────────────╮
+│                                            │
+│  - No channel security warnings detected.  │
+│  - Run: openclaw security audit --deep     │
+│                                            │
+├────────────────────────────────────────────╯
+│
+◇  Skills status ────────────╮
+│                            │
+│  Eligible: 4               │
+│  Missing requirements: 47  │
+│  Blocked by allowlist: 0   │
+│                            │
+├────────────────────────────╯
+│
+◇  Plugins ──────╮
+│                │
+│  Loaded: 5     │
+│  Disabled: 32  │
+│  Errors: 0     │
+│                │
+├────────────────╯
+│
+◇  Enable bash shell completion for openclaw?
+│  Yes
+│
+◇  Shell completion ────────────────────────────────────────────────────────╮
+│                                                                           │
+│  Shell completion installed. Restart your shell or run: source ~/.bashrc  │
+│                                                                           │
+├───────────────────────────────────────────────────────────────────────────╯
+│
+◇
+Telegram: ok (@myvps_manager_198_bot) (953ms)
+Agents: main (default)
+Heartbeat interval: 30m (main)
+Session store (main): /home/ducla/.openclaw/agents/main/sessions/sessions.json (1 entries)
+- agent:main:main (3m ago)
+│
+◇  Memory search ────────────────────────────────────────────────────────────────────────────╮
+│                                                                                            │
+│  Memory search is enabled but no embedding provider is configured.                         │
+│  Semantic recall will not work without an embedding provider.                              │
+│  Gateway memory probe for default agent is not ready: No API key found for provider        │
+│  "openai". Auth store: /home/ducla/.openclaw/agents/main/agent/auth-profiles.json          │
+│  (agentDir: /home/ducla/.openclaw/agents/main/agent). Configure auth for this agent        │
+│  (openclaw agents add <id>) or copy auth-profiles.json from the main agentDir.             │
+│                                                                                            │
+│  No API key found for provider "google". Auth store:                                       │
+│  /home/ducla/.openclaw/agents/main/agent/auth-profiles.json (agentDir:                     │
+│  /home/ducla/.openclaw/agents/main/agent). Configure auth for this agent (openclaw agents  │
+│  add <id>) or copy auth-profiles.json from the main agentDir.                              │
+│                                                                                            │
+│  No API key found for provider "voyage". Auth store:                                       │
+│  /home/ducla/.openclaw/agents/main/agent/auth-profiles.json (agentDir:                     │
+│  /home/ducla/.openclaw/agents/main/agent). Configure auth for this agent (openclaw agents  │
+│  add <id>) or copy auth-profiles.json from the main agentDir.                              │
+│                                                                                            │
+│  No API key found for provider "mistral". Auth store:                                      │
+│  /home/ducla/.openclaw/agents/main/agent/auth-profiles.json (agentDir:                     │
+│  /home/ducla/.openclaw/agents/main/agent). Configure auth for this agent (openclaw agents  │
+│  add <id>) or copy auth-profiles.json from the main agentDir.                              │
+│                                                                                            │
+│  Fix (pick one):                                                                           │
+│  - Set OPENAI_API_KEY, GEMINI_API_KEY, VOYAGE_API_KEY, or MISTRAL_API_KEY in your          │
+│    environment                                                                             │
+│  - Configure credentials: openclaw configure --section model                               │
+│  - For local embeddings: configure agents.defaults.memorySearch.provider and local model   │
+│    path                                                                                    │
+│  - To disable: openclaw config set agents.defaults.memorySearch.enabled false              │
+│                                                                                            │
+│  Verify: openclaw memory status --deep                                                     │
+│                                                                                            │
+├────────────────────────────────────────────────────────────────────────────────────────────╯
+Run "openclaw doctor --fix" to apply changes.
+│
+└  Doctor complete.
+
+ducla@ip-172-31-38-153:~$
